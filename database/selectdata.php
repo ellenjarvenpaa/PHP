@@ -16,7 +16,7 @@ try {
     echo '<td>'
         .
         $row['user_id'] . '</td>';
-    echo '<td><img alt="" src="'
+    echo '<td><img alt="kuva" src="uploads/'
         .
         $row['filename'] . '"</td>';
     echo '<td>'
@@ -34,6 +34,12 @@ try {
     echo '<td>'
         .
         $row['created_at'] . '</td>';
+    echo '<td> <a href="deletedata.php?id='
+        .
+        $row['media_id'] . '">Delete</a> 
+        <a href="#" data-id="'
+        .
+        $row['media_id'] . '">Modify</a>';
     echo '</tr>';
 }  catch(PDOException $e) {
     echo "Could not select data from the database.";

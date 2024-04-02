@@ -6,19 +6,21 @@
           content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="js/main.js" defer></script>
 </head>
 <body>
 <?php
 if (isset($_GET['success'])):
     ?>
-    <aside>
+    <dialog id="success-modal">
+        <p><a href="#" class="close-modal">Close</a></p>
         <p><?php echo $_GET['success']; ?></p>
-    </aside>
+    </dialog>
 <?php
 endif;
 ?>
 <section>
-    <form action="insertdata.php" method="post">
+    <form action="insertdata.php" method="post" enctype="multipart/form-data">
         <div>
             <label for="title">Title</label>
             <input type="text" name="title" id="title">
@@ -26,6 +28,11 @@ endif;
         <div>
             <label for="description">Description</label>
             <textarea name="description" id="description"></textarea>
+        </div>
+        <div>
+            <label for="file">File</label>
+            <input type="file" name="file" id="file">
+
         </div>
         <div>
             <input type="submit" value="Save">
@@ -44,12 +51,17 @@ endif;
             <th>title</th>
             <th>description</th>
             <th>created_at</th>
+            <th>Options</th>
         </tr>
         </thead>
         <tbody>
-
+            <?php require_once 'selectdata.php'; ?>
         </tbody>
     </table>
 </section>
+<dialog id="modify-modal">
+    <p><a href="#" class="close-modal">Close</a></p>
+    <div id="modify-content"></div>
+</dialog>
 </body>
 </html>
